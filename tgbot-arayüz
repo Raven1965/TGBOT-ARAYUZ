@@ -17,15 +17,18 @@ fi
 cd files
 clear
 bash güncelleme.sh
+touch config.txt
 bash banner.sh
 printf "
-\e[31m[\e[97m1\e[31m]\e[97m ────────── \e[32mMESAJ GÖNDER\e[97m
+\e[31m[\e[97m1\e[31m]\e[97m ────────── \e[32mTOKEN KAYDET\e[97m
 
-\e[31m[\e[97m2\e[31m]\e[97m ────────── \e[32mRESİM GÖNDER\e[97m
+\e[31m[\e[97m2\e[31m]\e[97m ────────── \e[32mMESAJ GÖNDER\e[97m
 
-\e[31m[\e[97m3\e[31m]\e[97m ────────── \e[32mVİDEO GÖNDER\e[97m
+\e[31m[\e[97m3\e[31m]\e[97m ────────── \e[32mRESİM GÖNDER\e[97m
 
-\e[31m[\e[97m4\e[31m]\e[97m ────────── \e[32mDOSYA GÖNDER\e[97m
+\e[31m[\e[97m4\e[31m]\e[97m ────────── \e[32mVİDEO GÖNDER\e[97m
+
+\e[31m[\e[97m5\e[31m]\e[97m ────────── \e[32mDOSYA GÖNDER\e[97m
 
 \e[31m[\e[97mX\e[31m]\e[97m ────────── \e[32mÇIKIŞ\e[97m
 "
@@ -33,14 +36,28 @@ echo
 echo
 echo
 read -e -p $'\e[31m───────[ \e[97mSEÇENEK GİRİNİZ\e[31m ]───────►  \e[0m' secim
-
-if [[ $secim == 1  ]];then
-	bash mesaj.sh
+echo
+echo
+echo
+if [[ $secim == 1 ]];then
+	read -e -p $'\e[31m───────[ \e[97mTOKEN GİRİNİZ\e[31m ]───────►  \e[0m' token
+	echo $token >config.txt
+	echo
+	echo
+	printf "\e[31m[!]\e[97m TOKEN KAYDEDİLDİ"
+	echo
+	echo
+	echo
+	cd ..
+	sleep 1
+	bash tgbot-arayüz
 elif [[ $secim == 2  ]];then
+	bash mesaj.sh
+elif [[ $secim == 3  ]];then
 	bash resim.sh
-elif [[ $secim == 3 ]];then
-	bash video.sh
 elif [[ $secim == 4 ]];then
+	bash video.sh
+elif [[ $secim == 5 ]];then
 	bash dosya.sh
 elif [[ $secim == x || $secim == X ]];then
 	echo

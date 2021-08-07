@@ -1,6 +1,6 @@
 TELEGRAM-BOT-ARAYUZ
 
-Güncelleme 05.08.2021
+Güncelleme 07.08.2021
 
 GİTHUB    : https://github.com/termuxxtoolss 
 

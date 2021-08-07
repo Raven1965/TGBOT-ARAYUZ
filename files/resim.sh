@@ -4,9 +4,9 @@ bash banner.sh
 echo
 echo
 echo
-read -e -p $'\e[31m───────[ \e[97mTOKEN GİRİNİZ\e[31m ]───────►  \e[0m' token
-
-curl -s https://api.telegram.org/bot$token/getUpdates | grep id |awk -F '"' '{print $9}' | tr -d : | tr -d , | jq >> idler3.txt
+#read -e -p $'\e[31m───────[ \e[97mTOKEN GİRİNİZ\e[31m ]───────►  \e[0m' token
+token1=$(cat config.txt)
+curl -s https://api.telegram.org/bot$token1/getUpdates | grep id |awk -F '"' '{print $9}' | tr -d : | tr -d , | jq >> idler3.txt
 
 awk -F "[, ]" '{ for(i=1;i<=NF;i++) if (!a[$i]++ && $i != "") print $i }' idler3.txt >> idler4.txt
 echo
@@ -17,10 +17,10 @@ echo
 echo
 echo
 read -e -p $'\e[31m───────[ \e[97mRESİM KONUMU GİRİNİZ\e[31m ]───────►  \e[0m' konum
-
+#token1=$(cat config)
 id=$(cat idler4.txt)
 for i in $id ; do
-	curl -s -X POST --silent -o /dev/null https://api.telegram.org/bot$token/sendphoto -F chat_id=$i -F caption=$basliq -F photo=@$konum
+	curl -s -X POST --silent -o /dev/null https://api.telegram.org/bot$token1/sendphoto -F chat_id=$i -F caption=$basliq -F photo=@$konum
 done
 echo
 echo
